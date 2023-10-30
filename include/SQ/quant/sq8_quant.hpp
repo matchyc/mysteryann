@@ -76,6 +76,10 @@ namespace glass {
         {
             printf("save quant\n");
             FILE *F = fopen(quant_file.c_str(), "wb");
+            if (F == nullptr) {
+                printf("can't open quant save file\n");
+                return;
+            }
             //  code_size 是一个对齐后向量的字节数
             fwrite(&N, sizeof(int), 1, F);
             fwrite(codes, sizeof(char), (size_t)N * code_size, F);
@@ -83,6 +87,7 @@ namespace glass {
             fwrite(mi.data(), sizeof(float), (size_t)d_align, F);
             fwrite(dif.data(), sizeof(float), (size_t)d_align, F);
             fclose(F);
+            printf("save quant finish.\n");
         }
 
         bool load_code(std::string quant_file)

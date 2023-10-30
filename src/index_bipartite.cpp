@@ -259,6 +259,147 @@ void IndexBipartite::AddEdgesInline(const Parameters &parameters) {
     }
 }
 
+void IndexBipartite::BuildGraphOnlyBase(size_t n_bp, const float *bp_data, Parameters &parameters) {
+    std::cout << "start build bipartite index" << std::endl;
+    auto s = std::chrono::high_resolution_clock::now();
+    // uint32_t M_sq = parameters.Get<uint32_t>("M_sq");
+    // uint32_t M_bp = parameters.Get<uint32_t>("M_bp");
+    uint32_t M_pjbp = parameters.Get<uint32_t>("M_pjbp");
+    // uint32_t L_pq = parameters.Get<uint32_t>("L_pq");
+    // aligned and processed memory block for tow datasets
+    data_bp_ = bp_data;
+    // data_sq_ = sq_data;
+    nd_ = n_bp;
+    nd_sq_ = 0;
+    total_pts_ = nd_ + nd_sq_;
+    u32_nd_ = static_cast<uint32_t>(nd_);
+    u32_nd_sq_ = static_cast<uint32_t>(nd_sq_);
+    u32_total_pts_ = static_cast<uint32_t>(total_pts_);
+    locks_ = std::vector<std::mutex>(total_pts_);
+    // bp_en_flags_.reserve(u32_nd_);
+    // sq_en_flags_.reserve(u32_nd_sq_);
+    // bp_en_set_.get_allocator().allocate(200);
+    // sq_en_set_.get_allocator().allocate(200);
+
+    SetBipartiteParameters(parameters);
+    // InitBipartiteGraph();
+    // for (size_t i = 0; i < bipartite_graph_.size(); ++i) {
+    //     if (i < nd_) {
+    //         bipartite_graph_[i].reserve(((size_t)M_bp) * 1.5);
+    //     } else {
+    //         bipartite_graph_[i].reserve(((size_t)M_sq) * 1.5);
+    //     }
+    // }
+
+    // if (need_normalize) {
+    //     std::cout << "normalizing base data" << std::endl;
+    //     for (size_t i = 0; i < nd_; ++i) {
+    //         float *data = const_cast<float *>(data_bp_);
+    //         normalize(data + i * dimension_, dimension_);
+    //     }
+    // }
+
+    SimpleNeighbor *simple_graph = nullptr;
+    // LinkBipartite(parameters, simple_graph);
+    // this->Load("/ann/cross_domain_index/t2i_1M_M50_30_L100_best_7_7/t2i_1M_bipartite.index");
+    // this->Load("/ann/cross_domain_index/t2i_10M_M_50_50_50_L_100_120/t2i_10M_bipartite.index");
+    // LinkBipartite(parameters, simple_graph);
+
+    // float bipartite_degree_avg = 0;
+    // size_t bipartite_degree_max = 0, bipartite_degree_min = std::numeric_limits<size_t>::max();
+    float projection_degree_avg = 0;
+    size_t projection_degree_max = 0, projection_degree_min = std::numeric_limits<size_t>::max();
+
+    // std::mt19937 rng(time(nullptr));
+    // std::uniform_int_distribution<uint32_t> base_dis(0, u32_nd_ - 1);
+
+    size_t i = 0;
+    // for (; i < nd_; i++) {
+    //     std::vector<uint32_t> &nbrs = bipartite_graph_[i];
+    //     nbrs.push_back(base_dis(rng) + u32_nd_);
+    //     bipartite_degree_avg += static_cast<float>(nbrs.size());
+    //     bipartite_degree_max = std::max(bipartite_degree_max, nbrs.size());
+    //     bipartite_degree_min = std::min(bipartite_degree_min, nbrs.size());
+    //     // if (nbrs.size() > M_bp + 1) {
+    //     // std::random_shuffle(nbrs.begin(), nbrs.end());
+    //     // nbrs.resize(M_bp + 1);
+    //     // nbrs.shrink_to_fit();
+    //     // }
+    // }
+    // for (; i < total_pts_; ++i) {
+    //     std::vector<uint32_t> &nbrs = bipartite_graph_[i];
+    //     nbrs.push_back(base_dis(rng));
+    //     bipartite_degree_avg += static_cast<float>(nbrs.size());
+    //     bipartite_degree_max = std::max(bipartite_degree_max, nbrs.size());
+    //     bipartite_degree_min = std::min(bipartite_degree_min, nbrs.size());
+    //     // if (nbrs.size() > M_sq + 1) {
+    //     // std::random_shuffle(nbrs.begin(), nbrs.end());
+    //     // nbrs.resize(M_sq + 1);
+    //     // nbrs.shrink_to_fit();
+    //     // }
+    // }
+
+    // auto e = std::chrono::high_resolution_clock::now();
+    // std::chrono::duration<double> diff = e - s;
+    // std::cout << "Build bipartite time: " << diff.count() << std::endl;
+    // std::cout << "Bipartite degree avg: " << bipartite_degree_avg / total_pts_ << std::endl;
+    // std::cout << "Bipartite degree max: " << bipartite_degree_max << std::endl;
+    // std::cout << "Bipartite degree min: " << bipartite_degree_min << std::endl;
+
+    // auto s = std::chrono::high_resolution_clock::now();
+    // s = std::chrono::high_resolution_clock::now();
+
+    supply_nbrs_.resize(nd_);
+    // for (i = 0; i < nd_; ++i) {
+    //     supply_nbrs_[i].reserve(M_pjbp * 1.5);
+    // }
+
+    // project bipartite
+    BipartiteProjection(parameters);
+
+    CalculateProjectionep();
+
+    assert(projection_ep_ < nd_);
+    std::cout << "begin link projection" << std::endl;
+    LinkBase(parameters, simple_graph);
+    // uint32_t pre_m = M_pjbp;
+    // parameters.Set<uint32_t>("M_pjbp", static_cast<uint32_t>(pre_m * 1.5));
+    // for (size_t i = 0; i < supply_nbrs_.size(); ++i) {
+    //     // projection_graph_[i].clear();
+    //     // projection_graph_[i] = supply_nbrs_[i];
+    //     // swap to projection_graph_, free supply
+    //     // supply_nbrs_[i].shrink_to_fit();
+    //     projection_graph_[i].swap(supply_nbrs_[i]);
+    //     // supply_nbrs_[i].reserve(M_pjbp * PROJECTION_SLACK);
+    // }
+    // AddEdgesInlineParts(parameters);
+    std::cout << std::endl;
+    // std::cout << "Starting collect points" << std::endl;
+    // auto co_s = std::chrono::high_resolution_clock::now();
+    // CollectPoints(parameters);
+    // auto co_e = std::chrono::high_resolution_clock::now();
+    // diff = co_e - co_s;
+    // std::cout << "Collect points time: " << diff.count() << std::endl;
+
+    // e = std::chrono::high_resolution_clock::now();
+    auto e = std::chrono::high_resolution_clock::now();
+    auto diff = e - s;
+    std::cout << "Build projection graph time: " << diff.count() / (1000 * 1000 * 1000) << std::endl;
+
+    for (i = 0; i < projection_graph_.size(); ++i) {
+        std::vector<uint32_t> &nbrs = projection_graph_[i];
+        projection_degree_avg += static_cast<float>(nbrs.size());
+        projection_degree_max = std::max(projection_degree_max, nbrs.size());
+        projection_degree_min = std::min(projection_degree_min, nbrs.size());
+    }
+    std::cout << "total degree: " << projection_degree_avg << std::endl;
+    std::cout << "Projection degree avg: " << projection_degree_avg / (float)u32_nd_ << std::endl;
+    std::cout << "Projection degree max: " << projection_degree_max << std::endl;
+    std::cout << "Projection degree min: " << projection_degree_min << std::endl;
+    ClearnBuildMemoryRemain4Search();
+    has_built = true;
+}
+
 
 void IndexBipartite::AddEdgesInlineParts(const Parameters &parameters) {
     uint32_t M_pjbp = parameters.Get<uint32_t>("M_pjbp");

@@ -81,7 +81,13 @@
         "ios": "cpp",
         "queue": "cpp",
         "numbers": "cpp",
-        "semaphore": "cpp"
+        "semaphore": "cpp",
+        "__hash_table": "cpp",
+        "__node_handle": "cpp",
+        "__nullptr": "cpp",
+        "__string": "cpp",
+        "__tuple": "cpp",
+        "locale": "cpp"
     },
     "cmake.configureOnOpen": false
 }

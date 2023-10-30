@@ -58,8 +58,8 @@ class Index {
  protected:
   const size_t dimension_;
   const float *data_;
-  const float *data_sq_;
-  const float *data_bp_;
+  const float *data_sq_ = nullptr;
+  const float *data_bp_ = nullptr;
   size_t nd_;
   size_t nd_sq_;
   bool has_built;

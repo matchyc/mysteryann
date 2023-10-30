@@ -233,6 +233,9 @@ class IndexBipartite : public Index {
     void ConvertAdjList2CSR(const std::vector<uint32_t>& P, uint32_t*& row_ptr, uint32_t*& col_idx);
 
     void ReorderAdjList(const std::vector<uint32_t>& P);
+
+    void BuildGraphOnlyBase(size_t n_bp, const float *bp_data, Parameters &parameters);
+
     // void AddBasePoint();
     // void AddSampledQuery();
     // void SearchWithOptGraph(const float *query, size_t K, const Parameters &parameters,
