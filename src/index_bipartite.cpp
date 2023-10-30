@@ -801,8 +801,10 @@ void IndexBipartite::BuildGraphST2(size_t n_bp, const float *bp_data, Parameters
 
     assert(projection_ep_ < nd_);
     std::cout << "begin link projection" << std::endl;
+    uint32_t pre_m = M_pjbp;
+    parameters.Set<uint32_t>("M_pjbp", M_pjbp - 5);
     LinkBase(parameters, simple_graph);
-    // uint32_t pre_m = M_pjbp;
+    parameters.Set<uint32_t>("M_pjbp", pre_m);
     // parameters.Set<uint32_t>("M_pjbp", static_cast<uint32_t>(pre_m * 1.5));
     AddEdgesInlineParts(parameters);
     std::cout << std::endl;
@@ -1986,7 +1988,7 @@ void IndexBipartite::LinkBase(const Parameters &parameters, SimpleNeighbor *simp
         // projection_graph_[i].clear();
         // supply_nbrs_[i] = projection_graph_[i];
         // supply_nbrs_[i].reserve(M_pjbp * 2 * PROJECTION_SLACK);
-        projection_graph_[i].reserve(M_pjbp * 2 * PROJECTION_SLACK);
+        projection_graph_[i].reserve((M_pjbp + 5) * 2 * PROJECTION_SLACK);
         // supply_nbrs_[i].reserve(M_pjbp * PROJECTION_SLACK);
         // supply_nbrs_[i].reserve(M_pjbp * PROJECTION_SLACK);
     }
