@@ -63,7 +63,8 @@ class BuildExt(build_ext):
     """A custom build extension for adding compiler-specific options."""
     c_opts = {
         'unix': ['-Ofast', '-fopenmp',
-                 '-DNDEBUG', '-march=native', '-mtune=native', '-ftree-vectorize','-Wall', '-DINFO'
+                 '-DNDEBUG', '-march=native', '-mtune=native', '-ftree-vectorize','-Wall', '-DINFO',
+                 '-mavx512f', '-mavx512cd', '-mavx512dq', '-mavx512bw', '-mavx512vl'
                  ],  # , '-w'
     }
     

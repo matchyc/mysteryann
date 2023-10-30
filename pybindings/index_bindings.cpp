@@ -191,7 +191,66 @@ void BuildST2(uint32_t M_pjbp, uint32_t L_pjpq, uint32_t num_threads, std::strin
     //     std::cout << "Index not initialized" << std::endl;
     //     return;
     // }
+    if (traning_set_file.size() == 0) {
+        std::cout << "small dataset" << std::endl;
+        uint32_t base_num, base_dim;
 
+        mysteryann::load_meta<float>(base_file.c_str(), base_num, base_dim);
+        mysteryann::IndexBipartite * index_ = new mysteryann::IndexBipartite(base_dim, base_num, m, nullptr);
+        float *data_bp = nullptr;
+        mysteryann::load_data_build<float>(base_file.c_str(), base_num, base_dim, data_bp);
+        omp_set_num_threads(num_threads);
+        mysteryann::Parameters parameters;
+        parameters.Set<uint32_t>("M_pjbp", M_pjbp);
+        parameters.Set<uint32_t>("L_pjpq", L_pjpq);
+        parameters.Set<uint32_t>("num_threads", num_threads);
+        index_->BuildGraphOnlyBase(base_num, data_bp, parameters);
+        // index_->LoadProjectionGraph(index_save_path.c_str());
+        std::cout << "Saving data file ..." << std::endl;
+        std::string data_file_name = index_save_path + ".data";
+        index_->SaveBaseData(data_file_name.c_str());
+        std::cout << "Data file saved" << std::endl;
+        std::cout << "roding ..." << std::endl;
+        index_->gorder(index_->gorder_w);
+        std::cout << "roding done" << std::endl;
+        std::cout << "saving graph and order" << std::endl;
+        Save(index_save_path, index_);
+        std::cout << "graph and order saved" << std::endl; 
+        delete index_;
+        malloc_trim(0);
+        std::cout << "create search context for train sq" << std::endl;
+        mysteryann::load_meta<float>(data_file_name.c_str(), base_num, base_dim);
+        uint32_t origin_dim = base_dim;
+        // if (m == mysteryann::INNER_PRODUCT) {
+            uint32_t search_align = DATA_ALIGN_FACTOR;
+            base_dim = (base_dim + search_align - 1) / search_align * search_align;
+        // }
+        index_ = new mysteryann::IndexBipartite(base_dim, base_num, m, nullptr);
+        index_->search_dim_ = origin_dim;
+        index_->LoadProjectionGraph(index_save_path.c_str());
+        std::string order_file_name = std::string(index_save_path) + ".order";
+        std::string original_order_file_name = std::string(index_save_path) + ".original_order";
+        std::cout << "load order..." << std::endl;
+        index_->LoadReorder(order_file_name, original_order_file_name);
+        std::cout << "reorder adjlist..." << std::endl;
+        index_->ReorderAdjList(index_->new_order_);
+        std::cout << "convert to csr..." << std::endl;
+        index_->ConvertAdjList2CSR(index_->row_ptr_, index_->col_idx_, index_->new_order_);
+        std::cout << "load base data in order..." << std::endl;
+        index_->LoadIndexDataReorder(data_file_name.c_str());
+
+        std::cout << "train sq" << std::endl;
+        index_->InitVisitedListPool(num_threads);    
+        index_->query_file_path = traning_set_file;
+        index_->prefetch_file_path = index_save_path + ".prefetch";
+        index_->quant_file_path = index_save_path + ".quant";
+        index_->TrainQuantizer(index_->get_base_ptr(), base_num, base_dim);
+        //use search 
+        // SearchReorderGraph()
+        index_->FreeBaseData();
+        delete index_;
+        return;
+    }
     uint32_t base_num, base_dim, sq_num, sq_dim;
     mysteryann::load_meta<float>(base_file.c_str(), base_num, base_dim);
     mysteryann::load_meta<float>(traning_set_file.c_str(), sq_num, sq_dim);
