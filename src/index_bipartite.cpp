@@ -3957,6 +3957,18 @@ void IndexBipartite::TrainQuantizer(const float *data_quant, int n_quant, int di
     quant = new glass::SQ8Quantizer<glass::Metric::IP>(dim_qunt);
     quant->train(data_quant, n_quant);
     quant->save_code(quant_file_path);
+    if (metric_ == mysteryann::L2) {
+        printf("for small L2 dataet, no learn no optimize");
+        this->po = 4;
+        this->pl = 5;
+        FILE *F = fopen(prefetch_file_path.c_str(), "wb");
+        fwrite(&this->po, sizeof(int), 1, F);
+        fwrite(&this->pl, sizeof(int), 1, F);
+        fclose(F);
+        delete quant;
+        quant = nullptr;
+        return;
+    }
     OptimizePrefetch(125, 8);
     delete quant;
     quant = nullptr;
