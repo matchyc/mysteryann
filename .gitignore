@@ -1,0 +1,4 @@
+build/
+pybindings/tmp/*
+pybindings/build/*
+

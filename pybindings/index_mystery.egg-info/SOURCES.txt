@@ -1,0 +1,10 @@
+index_bindings.cpp
+setup.py
+../src/index.cpp
+../src/index_bipartite.cpp
+../src/index_nsg.cpp
+index_mystery.egg-info/PKG-INFO
+index_mystery.egg-info/SOURCES.txt
+index_mystery.egg-info/dependency_links.txt
+index_mystery.egg-info/requires.txt
+index_mystery.egg-info/top_level.txt
