@@ -4025,9 +4025,9 @@ void IndexBipartite::OptimizePrefetch(uint32_t L_pq = 125, int num_threads = 8)
 
     printf("=============Start optimization=============\n");
     // Optimization parameters
-    constexpr static int kOptimizePoints = 2000;
-    constexpr static int kTryPos = 10;
-    constexpr static int kTryPls = 5;
+    constexpr static int kOptimizePoints = 10000;
+    constexpr static int kTryPos = 12;
+    constexpr static int kTryPls = 8;
     constexpr static int kTryK = 10;
 
     if (num_threads == 0)
