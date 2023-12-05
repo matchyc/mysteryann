@@ -1,9 +1,14 @@
-# MysteryANN: A Cross-Modal Retrieval with Generalization for Fast Approximate Nearest Neighbor Search
+# RoarGraph | MysteryANN: Efficient Cross-modal Approximate Nearest Neighbor Search
 
-MysteryANN is a cutting-edge research project centered around cross-modal retrieval with a focus on generalization. It has been specifically designed for cross-modal Approximate Nearest Neighbor Search (ANNS) while maintaining robustness for single-modal vector search. This repository builds upon the NSG repo and incorporates other open-source implementations. We have added our custom index codes extensively, resulting in significant speed improvements and state-of-the-art performance.
+🏆 Winning NeurIPS' Competition Track: Big ANN, Practical Vector Search Challenge. (OOD Track)
+
+The first open-source vector search solution that achieves better or the same performance as commercial solutions, such as Zilliz.
+
+
+MysteryANN is a cutting-edge research project centered around cross-modal retrieval. It has been specifically designed for cross-modal Approximate Nearest Neighbor Search (ANNS) while maintaining robustness for single-modal vector search. This repository builds upon the NSG repo and incorporates other open-source implementations. We have added our custom index codes extensively, resulting in significant speed improvements and state-of-the-art performance.
 
 [![NIPS Big-ANN Benchmark 2023](https://img.shields.io/badge/NIPS%20Big--ANN%20Benchmark-2023-blue)](https://big-ann-benchmarks.com/neurips23.html)
-[![GitHub Clones](https://img.shields.io/badge/dynamic/json?color=success&label=Clone&query=count&url=https://gist.githubusercontent.com/matchyc/daf1f1c1372416a529003f91b5562fdc/raw/clone.json&logo=github)](https://github.com/MShawon/github-clone-count-badge)
+[![GitHub Clones](https://img.shields.io/badge/dynamic/json?color=success&label=Clone&query=count&url=https://gist.githubusercontent.com/matchyc/daf1f1c1372416a529003f91b5562fdc/raw/clone.json&logo=github)](https://github.com/MShawon/github-clone-count-badge) + 274 (total downloads)
 
 
 
