@@ -7,7 +7,13 @@ The first open-source vector search solution that achieves better or the same pe
 
 MysteryANN is a cutting-edge research project centered around cross-modal retrieval. It has been specifically designed for cross-modal Approximate Nearest Neighbor Search (ANNS) while maintaining robustness for single-modal vector search. This repository builds upon the NSG repo and incorporates other open-source implementations. We have added our custom index codes extensively, resulting in significant speed improvements and state-of-the-art performance.
 
+
 [![NIPS Big-ANN Benchmark 2023](https://img.shields.io/badge/NIPS%20Big--ANN%20Benchmark-2023-blue)](https://big-ann-benchmarks.com/neurips23.html)
+
+![](https://api.visitorbadge.io/api/VisitorHit?user=matchyc&repo=mysteryann&countColor=%237B1E7A)
+
+
+
 [![GitHub Clones](https://img.shields.io/badge/dynamic/json?color=success&label=Clone&query=count&url=https://gist.githubusercontent.com/matchyc/daf1f1c1372416a529003f91b5562fdc/raw/clone.json&logo=github)](https://github.com/MShawon/github-clone-count-badge) + 274 (total downloads)
 
 
