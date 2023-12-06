@@ -1,4 +1,4 @@
-# RoarGraph | MysteryANN: Efficient Cross-modal Approximate Nearest Neighbor Search
+# RoarGraph | MysteryANN: Efficient Cross-modal Approximate Nearest Neighbor Search (Vector Search)
 
 🏆 Winning NeurIPS' Competition Track: Big ANN, Practical Vector Search Challenge. (OOD Track)
 
@@ -7,8 +7,15 @@ The first open-source vector search solution that achieves better or the same pe
 
 MysteryANN is a cutting-edge research project centered around cross-modal retrieval. It has been specifically designed for cross-modal Approximate Nearest Neighbor Search (ANNS) while maintaining robustness for single-modal vector search. This repository builds upon the NSG repo and incorporates other open-source implementations. We have added our custom index codes extensively, resulting in significant speed improvements and state-of-the-art performance.
 
+
 [![NIPS Big-ANN Benchmark 2023](https://img.shields.io/badge/NIPS%20Big--ANN%20Benchmark-2023-blue)](https://big-ann-benchmarks.com/neurips23.html)
+
+![](https://api.visitorbadge.io/api/VisitorHit?user=matchyc&repo=mysteryann&countColor=%237B1E7A)
+
+
+
 [![GitHub Clones](https://img.shields.io/badge/dynamic/json?color=success&label=Clone&query=count&url=https://gist.githubusercontent.com/matchyc/daf1f1c1372416a529003f91b5562fdc/raw/clone.json&logo=github)](https://github.com/MShawon/github-clone-count-badge) + 274 (total downloads)
+
 
 
 
@@ -17,7 +24,7 @@ MysteryANN is a cutting-edge research project centered around cross-modal retrie
 **Please Note:** 
 - This codebase is only intended for use in the [NIPS 2023 Big-ANN Competition](https://big-ann-benchmarks.com/neurips23.html).
 <!-- It also serves as the codebase for our **upcoming research paper**. Therefore, the code in this repository may undergo changes and enhancements as we refine our approach.-->
- **Our research paper is approaching preprint**, so we kindly say that **this repository or idea does not support academic purposes temporarily**. We appreciate your understanding.
+ **Our research paper is submitted**, so we kindly say that **this repository or idea does not support academic purposes temporarily**. We appreciate your understanding.
  I plan to provide a tidy library in the near future.
 
 **Repository Organization:**
@@ -26,6 +33,7 @@ MysteryANN is a cutting-edge research project centered around cross-modal retrie
 
 **About the Name:**
 - The name "MysteryANN" is temporary and may not be the final name for this project, it's just for fun and representing "unknown."
+- RoarGraph will be the suiablt name.
 
 ## Getting Started
 (Unfinished)
@@ -41,8 +49,8 @@ Un-decided
 
 
 ## Contact
-Meng Chen and Yue Chen Contribute to this repository.
-If you wish, please leave a message if you plan to use this idea
+If you wish, please leave a message if you plan to use this idea,
+even we have seen hundres of clones...
 
 For questions or inquiries, feel free to reach out to Meng Chen at
 [mengchen22@m.fudan.edu.cn](mailto:mengchen22@m.fudan.edu.cn)
