@@ -32,8 +32,8 @@ MysteryANN is a cutting-edge research project centered around cross-modal retrie
 - As we are currently focused on our paper, the codebase might not be as tidy as we'd like. Rest assured, we plan to clean up the code in the near future.
 
 **About the Name:**
-- The name "MysteryANN" is temporary and may not be the final name for this project, it's just for fun and representing "unknown."
-- RoarGraph will be the suiablt name.
+- The name "MysteryANN" is temporary and may not be the final name for this project; it's just for fun and represents "unknown."
+- RoarGraph will be the suitable name.
 
 ## Getting Started
 (Unfinished)
@@ -49,8 +49,7 @@ Un-decided
 
 
 ## Contact
-If you wish, please leave a message if you plan to use this idea,
-even we have seen hundres of clones...
+If you wish, please leave a message if you plan to use this idea.
 
 For questions or inquiries, feel free to reach out to Meng Chen at
 [mengchen22@m.fudan.edu.cn](mailto:mengchen22@m.fudan.edu.cn)
