@@ -2,7 +2,7 @@
 
 🏆 Winning NeurIPS' Competition Track: Big ANN, Practical Vector Search Challenge. (OOD Track)
 
-The first open-source cross-modal vector search solution that achieves better or the same performance as commercial solutions.
+The fastest open-source cross-modal vector search solution.
 
 
 MysteryANN is a cutting-edge research project centered around cross-modal retrieval. It has been specifically designed for cross-modal Approximate Nearest Neighbor Search (ANNS) while maintaining robustness for single-modal vector search. This repository builds upon the NSG repo and incorporates other open-source implementations. We have added our custom index codes extensively, resulting in significant speed improvements and state-of-the-art performance.
