@@ -1,6 +1,6 @@
 # RoarGraph | MysteryANN: Efficient Cross-modal Approximate Nearest Neighbor Search (Vector Search)
 
-🏆 Winning NeurIPS' Competition Track: Big ANN, Practical Vector Search Challenge. (OOD Track)
+🏆 Winning NeurIPS' Competition Track: Big ANN, Practical Vector Search Challenge. (OOD Track) (Our other solution won the Sparse Track)
 
 The fastest open-source cross-modal vector search solution.
 
