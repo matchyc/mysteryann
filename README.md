@@ -1,6 +1,6 @@
 # RoarGraph: A Projected Bipartite Graph for Efficient Cross-Modal Approximate Nearest Neighbor Search | MysteryANN
 
-This repository includes the codes for VLDB 2024 paper RoarGraph, it also 🏆 Winning NeurIPS' Competition Track: Big ANN, Practical Vector Search Challenge. (OOD Track) (Our other solution won the Sparse Track).
+This repository includes the codes for VLDB 2024 paper RoarGraph.
 
 [![NIPS Big-ANN Benchmark 2023](https://img.shields.io/badge/NIPS%20Big--ANN%20Benchmark-2023-blue)](https://big-ann-benchmarks.com/neurips23.html)
 
@@ -14,7 +14,8 @@ This repository includes the codes for VLDB 2024 paper RoarGraph, it also 🏆 W
 This code builds upon the NSG repo and incorporates other open-source implementations.
 
 The main branch is the codebase of the RoarGraph paper.
-The codes for the NIPS 2023 challenge are available in separate branches.
+
+The codes for the NIPS 2023 challenge are available in separate branches. It also 🏆 Winning NeurIPS' Competition Track: Big ANN, Practical Vector Search Challenge. (OOD Track) (Our other solution won the Sparse Track).
 
 ## Getting Started & Reproduce Experiments in the Paper
 File format: all `fbin` files begin with number of vectors (uint32, 4 bytes), dimension (uint32, 4 bytes), and followed by the vector data.
