@@ -2,7 +2,9 @@
 
 The codes for the NIPS 2023 challenge are available in separate branches. The main branch is the codebase of the RoarGraph paper. It also 🏆 Winning NeurIPS' Competition Track: Big ANN, Practical Vector Search Challenge. (OOD Track) (Our other solution won the Sparse Track).
 
-This repository was mainly used for the NIPS 2023 competition but includes the codes for the VLDB 2024 paper RoarGraph (not well prepared). Please refer to https://github.com/matchyc/RoarGraph for detailed instructions of the paper.
+You can find the codes for the NIPS 2023 competition in other branches, **NOT** the main branch, even if they have similar designs from the same research project.
+
+I also prepared a tidy code repository for the VLDB paper. Please refer to https://github.com/matchyc/RoarGraph for detailed instructions, and avoid using the main branch to reproduce paper, you may face issues.
 
 [![NIPS Big-ANN Benchmark 2023](https://img.shields.io/badge/NIPS%20Big--ANN%20Benchmark-2023-blue)](https://big-ann-benchmarks.com/neurips23.html)
 
@@ -18,7 +20,7 @@ This code builds upon the NSG repo and incorporates other open-source implementa
 
 
 ## Getting Started & Reproduce Experiments in the Paper
-File format: all `fbin` files begin with number of vectors (uint32, 4 bytes), dimension (uint32, 4 bytes), and followed by the vector data.
+File format: all `fbin` files begin with a number of vectors (uint32, 4 bytes), dimension (uint32, 4 bytes), and followed by the vector data.
 
 We use zenodo `https://zenodo.org/` to save indexes files online (50GB for free), however, it may take a while to download file with x GB size (tested 500KB/s) since its a free platform for publishing research data.
 
