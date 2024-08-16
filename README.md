@@ -2,7 +2,7 @@
 
 The codes for the NIPS 2023 challenge are available in separate branches. The main branch is the codebase of the RoarGraph paper. It also 🏆 Winning NeurIPS' Competition Track: Big ANN, Practical Vector Search Challenge. (OOD Track) (Our other solution won the Sparse Track).
 
-You can find the codes for the NIPS 2023 competition in other branches, **NOT** the main branch, even if they have similar designs from the same research project.
+You can find the codes for the NIPS 2023 competition in other branches, **NOT** the main branch, even if they have similar designs from the same research project. The paper version provides **a better index**.
 
 I also prepared a tidy code repository for the VLDB paper. Please refer to https://github.com/matchyc/RoarGraph for detailed instructions, and avoid using the main branch to reproduce paper, you may face issues.
 
